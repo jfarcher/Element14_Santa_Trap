@@ -28,19 +28,29 @@ from random import choice
 pygame.init()
 pygame.mixer.init()
 
+#Setup the GPIO to use the logical pin numbering
+GPIO.setmode(GPIO.BOARD)
+
 #Create Variables
 global distance
 
-song1 = "Link to music"
+song1 = "/home/les/Music/jingle.ogg"
 song2 = "Link to music"
 song3 = "Link to music"
 
-LED1 = 1
-LED2 = 2
-LED3 = 3
-LED4 = 4
+LED1 = 8
+LED2 = 10
+LED3 = 12
+LED4 = 16
 
 camera = picamera.PiCamera()
+
+#Setup GPIO pins
+
+GPIO.setup(LED1, GPIO.OUT)
+GPIO.setup(LED2, GPIO.OUT)
+GPIO.setup(LED3, GPIO.OUT)
+GPIO.setup(LED4, GPIO.OUT)
 
 #Create List which we will use to play a *random* song
 
@@ -73,8 +83,19 @@ def ultra(sensor):
         print "Error."
 
 def music(x):
-	pygame.mixer.music.load("/home/les/Music/jingle.ogg")
+	pygame.mixer.music.load(x)
 	pygame.mixer.music.play(1)
+
+def flash(a,b,c,d):
+	GPIO.output(a, True)
+	GPIO.output(b, False)
+	GPIO.output(c, True)
+	GPIO.output(d, False)
+	time.sleep(0.5)
+	GPIO.output(a, False)
+	GPIO.output(b, True)
+	GPIO.output(c, Flase)
+	GPIO.output(d, True)
 
 #Main Body Of Code
 
@@ -83,7 +104,7 @@ def music(x):
 while True:
 	ultra(0)
 	if distance < 30:
-
+		music(song1)
 	    a = datetime.datetime.now()
 	    a = str(a)
 	    a = a[0:19]
