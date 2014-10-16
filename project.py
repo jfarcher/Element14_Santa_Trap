@@ -35,10 +35,6 @@ GPIO.setmode(GPIO.BOARD)
 #Create Variables
 global distance
 
-song1 = "./jingle.mp3"
-song2 = "Link to music"
-song3 = "Link to music"
-
 LED1 = 8
 LED2 = 10
 #LED3 = 12
@@ -52,6 +48,10 @@ camera = picamera.PiCamera()
 
 trigger = 23
 echo = 24
+
+song1 = "./jingle.mp3"
+song2 = "./white.mp3"
+song3 = "./merry.mp3"
 
 #Setup GPIO pins
 
@@ -133,6 +133,8 @@ def rgb():
 
 while True:
 	ultra(0)
+	songlist = [song1,song2,song3]
+	chosen = choice(songlist)
 	if distance < 30:
 		a = datetime.datetime.now()
 		a = str(a)
@@ -142,7 +144,7 @@ while True:
 		pic = (a)+(".jpg")
 		camera.resolution = (1024, 768)
 		camera.capture(pic)
-		music(song1)
+		music(chosen)
 		for i in range(100):
 			flash(LED1,LED2)
 			rgb()
