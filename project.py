@@ -35,7 +35,7 @@ GPIO.setmode(GPIO.BOARD)
 #Create Variables
 global distance
 
-song1 = "/home/les/Music/jingle.ogg"
+song1 = "./jingle.mp3"
 song2 = "Link to music"
 song3 = "Link to music"
 
@@ -119,8 +119,8 @@ while True:
 		pic = (a)+(".jpg")
 		camera.resolution = (1024, 768)
 		camera.capture(pic)
-		#music(song1)
-		for i in range(60):
+		music(song1)
+		for i in range(100):
 			flash(LED1,LED2)
 
 		time.sleep(1)
