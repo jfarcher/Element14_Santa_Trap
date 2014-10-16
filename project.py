@@ -44,6 +44,10 @@ LED2 = 10
 #LED3 = 12
 #LED4 = 16
 
+red = 36
+green = 38
+blue = 40
+delay = 0.2
 camera = picamera.PiCamera()
 
 trigger = 23
@@ -56,6 +60,11 @@ GPIO.setup(LED2, GPIO.OUT)
 #GPIO.setup(LED3, GPIO.OUT)
 #GPIO.setup(LED4, GPIO.OUT)
 GPIO.setup(trigger, GPIO.OUT)
+
+GPIO.setup(red, GPIO.OUT)
+GPIO.setup(green, GPIO.OUT)
+GPIO.setup(blue, GPIO.OUT)
+
 GPIO.setup(echo, GPIO.IN)
 
 #Create List which we will use to play a *random* song
@@ -104,6 +113,20 @@ def flash(a,b):
 		#GPIO.output(d, True)
 		time.sleep(0.5)
 
+def rgb():
+	GPIO.output(red, False)
+	GPIO.output(blue, True)
+	GPIO.output(green, True)
+	time.sleep(delay)
+	GPIO.output(red, True)
+	GPIO.output(blue, False)
+	GPIO.output(green, True)
+	time.sleep(delay)
+	GPIO.output(red, True)
+	GPIO.output(blue, True)
+	GPIO.output(green, False)
+	time.sleep(delay)
+
 #Main Body Of Code
 
 
@@ -122,6 +145,7 @@ while True:
 		music(song1)
 		for i in range(100):
 			flash(LED1,LED2)
+			rgb()
 
 		time.sleep(1)
 	else:
