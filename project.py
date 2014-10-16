@@ -29,6 +29,7 @@ pygame.init()
 pygame.mixer.init()
 
 #Setup the GPIO to use the logical pin numbering
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 
 #Create Variables
@@ -40,8 +41,8 @@ song3 = "Link to music"
 
 LED1 = 8
 LED2 = 10
-LED3 = 12
-LED4 = 16
+#LED3 = 12
+#LED4 = 16
 
 camera = picamera.PiCamera()
 
@@ -52,8 +53,8 @@ echo = 24
 
 GPIO.setup(LED1, GPIO.OUT)
 GPIO.setup(LED2, GPIO.OUT)
-GPIO.setup(LED3, GPIO.OUT)
-GPIO.setup(LED4, GPIO.OUT)
+#GPIO.setup(LED3, GPIO.OUT)
+#GPIO.setup(LED4, GPIO.OUT)
 GPIO.setup(trigger, GPIO.OUT)
 GPIO.setup(echo, GPIO.IN)
 
@@ -91,16 +92,17 @@ def music(x):
 	pygame.mixer.music.load(x)
 	pygame.mixer.music.play(1)
 
-def flash(a,b,c,d):
-	GPIO.output(a, True)
-	GPIO.output(b, False)
-	GPIO.output(c, True)
-	GPIO.output(d, False)
-	time.sleep(0.5)
-	GPIO.output(a, False)
-	GPIO.output(b, True)
-	GPIO.output(c, Flase)
-	GPIO.output(d, True)
+def flash(a,b):
+		GPIO.output(a, True)
+		GPIO.output(b, False)
+		#GPIO.output(c, True)
+		#GPIO.output(d, False)
+		time.sleep(0.5)
+		GPIO.output(a, False)
+		GPIO.output(b, True)
+		#GPIO.output(c, False)
+		#GPIO.output(d, True)
+		time.sleep(0.5)
 
 #Main Body Of Code
 
@@ -109,17 +111,18 @@ def flash(a,b,c,d):
 while True:
 	ultra(0)
 	if distance < 30:
-		#music(song1)
-		flash(LED1,LED2,LED3,LED4)
 		a = datetime.datetime.now()
 		a = str(a)
 		a = a[0:19]
 		alert = ("Santa detected at "+str(a))
 		print(alert)
 		pic = (a)+(".jpg")
-		vid = (a)+(".h264")
 		camera.resolution = (1024, 768)
 		camera.capture(pic)
-		time.sleep(10)
+		#music(song1)
+		for i in range(60):
+			flash(LED1,LED2)
+
+		time.sleep(1)
 	else:
 		print("Waiting for Santa")
