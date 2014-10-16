@@ -127,9 +127,18 @@ def rgb():
 	GPIO.output(green, False)
 	time.sleep(delay)
 
+def reset(red,green,blue,a,b):
+	GPIO.output(red, True)
+	GPIO.output(blue, True)
+	GPIO.output(green, True)
+	GPIO.output(a, False)
+	GPIO.output(b, False)
+
 #Main Body Of Code
 
-
+#Cue to tell me that the system is ready
+music("./sleigh.mp3")
+reset(red,green,blue,LED1,LED2)
 
 while True:
 	ultra(0)
