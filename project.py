@@ -45,12 +45,17 @@ LED4 = 16
 
 camera = picamera.PiCamera()
 
+trigger = 23
+echo = 24
+
 #Setup GPIO pins
 
 GPIO.setup(LED1, GPIO.OUT)
 GPIO.setup(LED2, GPIO.OUT)
 GPIO.setup(LED3, GPIO.OUT)
 GPIO.setup(LED4, GPIO.OUT)
+GPIO.setup(trigger, GPIO.OUT)
+GPIO.setup(echo, GPIO.IN)
 
 #Create List which we will use to play a *random* song
 
@@ -104,7 +109,8 @@ def flash(a,b,c,d):
 while True:
 	ultra(0)
 	if distance < 30:
-		music(song1)
+		#music(song1)
+		flash(LED1,LED2,LED3,LED4)
 	    a = datetime.datetime.now()
 	    a = str(a)
 	    a = a[0:19]
@@ -112,9 +118,8 @@ while True:
 	    print(alert)
 	    pic = (a)+(".jpg")
 	    vid = (a)+(".h264")
-	    message = (alert),(pic),(vid)
 	    camera.resolution = (1024, 768)
 	    camera.capture(pic)
 	    time.sleep(10)
 	else:
-
+		print("Waiting for Santa")
