@@ -111,15 +111,15 @@ while True:
 	if distance < 30:
 		#music(song1)
 		flash(LED1,LED2,LED3,LED4)
-	    a = datetime.datetime.now()
-	    a = str(a)
-	    a = a[0:19]
-	    alert = ("Santa detected at "+str(a))
-	    print(alert)
-	    pic = (a)+(".jpg")
-	    vid = (a)+(".h264")
-	    camera.resolution = (1024, 768)
-	    camera.capture(pic)
-	    time.sleep(10)
+		a = datetime.datetime.now()
+		a = str(a)
+		a = a[0:19]
+		alert = ("Santa detected at "+str(a))
+		print(alert)
+		pic = (a)+(".jpg")
+		vid = (a)+(".h264")
+		camera.resolution = (1024, 768)
+		camera.capture(pic)
+		time.sleep(10)
 	else:
 		print("Waiting for Santa")
