@@ -41,8 +41,8 @@ LED2 = 10
 #LED4 = 16
 
 red = 36
-green = 38
-blue = 40
+blue = 38
+green = 40
 delay = 0.2
 camera = picamera.PiCamera()
 
@@ -106,31 +106,35 @@ def flash(a,b):
 		GPIO.output(b, False)
 		#GPIO.output(c, True)
 		#GPIO.output(d, False)
-		time.sleep(0.5)
+		time.sleep(0.2)
 		GPIO.output(a, False)
 		GPIO.output(b, True)
 		#GPIO.output(c, False)
 		#GPIO.output(d, True)
-		time.sleep(0.5)
+		#time.sleep(0.2)
 
 def rgb():
+	GPIO.output(red, True)
+	GPIO.output(blue, False)
+	GPIO.output(green, False)
+	time.sleep(delay)
 	GPIO.output(red, False)
 	GPIO.output(blue, True)
-	GPIO.output(green, True)
+	GPIO.output(green, False)
 	time.sleep(delay)
-	GPIO.output(red, True)
+	GPIO.output(red, False)
 	GPIO.output(blue, False)
 	GPIO.output(green, True)
 	time.sleep(delay)
-	GPIO.output(red, True)
-	GPIO.output(blue, True)
+	GPIO.output(red, False)
+	GPIO.output(blue, False)
 	GPIO.output(green, False)
 	time.sleep(delay)
 
 def reset(red,green,blue,a,b):
-	GPIO.output(red, True)
-	GPIO.output(blue, True)
-	GPIO.output(green, True)
+	GPIO.output(red, False)
+	GPIO.output(blue, False)
+	GPIO.output(green, False)
 	GPIO.output(a, False)
 	GPIO.output(b, False)
 
@@ -139,6 +143,7 @@ def reset(red,green,blue,a,b):
 #Cue to tell me that the system is ready
 music("./sleigh.mp3")
 reset(red,green,blue,LED1,LED2)
+
 
 while True:
 	ultra(0)
