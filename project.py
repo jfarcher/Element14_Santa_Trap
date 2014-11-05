@@ -41,6 +41,7 @@ LED3 = 12
 LED4 = 16
 LED5 = 18
 LED6 = 22
+LED7 = 24
 
 red = 36
 blue = 38
@@ -63,6 +64,7 @@ GPIO.setup(LED3, GPIO.OUT)
 GPIO.setup(LED4, GPIO.OUT)
 GPIO.setup(LED5, GPIO.OUT)
 GPIO.setup(LED6, GPIO.OUT)
+GPIO.setup(LED7, GPIO.OUT)
 GPIO.setup(trigger, GPIO.OUT)
 
 GPIO.setup(red, GPIO.OUT)
@@ -102,13 +104,14 @@ def music(x):
 	pygame.mixer.music.load(x)
 	pygame.mixer.music.play(1)
 
-def flash(a,b,c,d,e,f):
+def flash(a,b,c,d,e,f,g):
 		GPIO.output(a, True)
 		GPIO.output(b, False)
 		GPIO.output(c, True)
 		GPIO.output(d, False)
 		GPIO.output(e, True)
-		GPIO.output(f, False)		
+		GPIO.output(f, False)
+		GPIO.output(g, True)		
 		time.sleep(0.2)
 		GPIO.output(a, False)
 		GPIO.output(b, True)
@@ -116,6 +119,7 @@ def flash(a,b,c,d,e,f):
 		GPIO.output(d, True)
 		GPIO.output(e, False)
 		GPIO.output(f, True)
+		GPIO.output(g, False)
 		time.sleep(0.2)
 
 def rgb():
