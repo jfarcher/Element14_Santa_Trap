@@ -49,8 +49,8 @@ green = 40
 delay = 0.2
 camera = picamera.PiCamera()
 
-trigger = 23
-echo = 24
+trigger = 26
+echo = 23
 
 song1 = "./jingle.mp3"
 song2 = "./white.mp3"
@@ -140,18 +140,23 @@ def rgb():
 	GPIO.output(green, False)
 	time.sleep(delay)
 
-def reset(red,green,blue,a,b):
+def reset(red,green,blue,a,b,c,d,e,f,g):
 	GPIO.output(red, False)
 	GPIO.output(blue, False)
 	GPIO.output(green, False)
 	GPIO.output(a, False)
 	GPIO.output(b, False)
+	GPIO.output(c, False)
+	GPIO.output(d, False)
+	GPIO.output(e, False)
+	GPIO.output(f, False)
+	GPIO.output(g, False)
 
 #Main Body Of Code
 
 #Cue to tell me that the system is ready
 music("./sleigh.mp3")
-reset(red,green,blue,LED1,LED2,LED3,LED4)
+reset(red,green,blue,LED1,LED2,LED3,LED4,LED5,LED6,LED7)
 
 
 while True:
@@ -169,7 +174,7 @@ while True:
 		camera.capture(pic)
 		music(chosen)
 		for i in range(100):
-			flash(LED1,LED2,LED3,LED4,LED5,LED6)
+			flash(LED1,LED2,LED3,LED4,LED5,LED6,LED7)
 			rgb()
 
 		time.sleep(1)
