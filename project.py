@@ -176,8 +176,8 @@ while True:
 		for i in range(100):
 			flash(LED1,LED2,LED3,LED4,LED5,LED6,LED7)
 			rgb()
-
 		time.sleep(1)
+		reset(red,green,blue,LED1,LED2,LED3,LED4,LED5,LED6,LED7)
 	else:
 		print("Waiting for Santa")
 		time.sleep(1)
